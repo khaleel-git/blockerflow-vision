@@ -1,7 +1,9 @@
 package main
 
 import (
+	"crypto/sha256"
 	_ "embed"
+	"encoding/hex"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -86,11 +88,30 @@ func newSession(in, out string, coreML bool) (*ort.DynamicAdvancedSession, error
 		return nil, err
 	}
 	if coreML {
-		if err := opts.AppendExecutionProviderCoreMLV2(map[string]string{"MLComputeUnits": "ALL", "ModelFormat": "MLProgram"}); err != nil {
+		cml := map[string]string{"MLComputeUnits": "ALL", "ModelFormat": "MLProgram"}
+		if dir := coreMLCache(); dir != "" {
+			cml["ModelCacheDirectory"] = dir
+		}
+		if err := opts.AppendExecutionProviderCoreMLV2(cml); err != nil {
 			return nil, err
 		}
 	}
 	return ort.NewDynamicAdvancedSessionWithONNXData(nudenet, []string{in}, []string{out}, opts)
+}
+
+// coreMLCache is where CoreML keeps the model it compiled, so later starts skip the compile:
+// ~/Library/Caches/eu.khaleel.blockerflow/vision-coreml/<model hash>. "" (no cache) if it cannot be made.
+func coreMLCache() string {
+	base, err := os.UserCacheDir()
+	if err != nil {
+		return ""
+	}
+	sum := sha256.Sum256(nudenet)
+	dir := filepath.Join(base, "eu.khaleel.blockerflow", "vision-coreml", hex.EncodeToString(sum[:6]))
+	if err := os.MkdirAll(dir, 0o700); err != nil {
+		return ""
+	}
+	return dir
 }
 
 // toCHW turns RGB bytes (row-major, three a pixel) into the model's input: three planes, 0..1.

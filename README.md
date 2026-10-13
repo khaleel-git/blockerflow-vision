@@ -42,3 +42,6 @@ Little-endian, fixed sizes, over stdin and stdout.
 | each reply | program to client | uint8 status; 0: 18 float32 scores in class order (the best score each class reached anywhere in the picture); 1: uint32 n + n bytes of error message |
 
 The program exits when its input closes. Diagnostics go to stderr.
+
+CoreML keeps the model it compiles in `~/Library/Caches/eu.khaleel.blockerflow/vision-coreml/<model hash>`, so starts
+after the first skip the compile (on an M4: 1.3 s the first time, 0.45 s after).
