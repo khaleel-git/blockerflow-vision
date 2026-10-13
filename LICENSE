@@ -1,0 +1,14 @@
+blockerflow-vision
+Copyright (C) 2026 Khaleel Ahmad
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
+General Public License as published by the Free Software Foundation, version 3.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
+License for more details.
+
+The NudeNet model in model/ is by notAI-tech (https://github.com/notAI-tech/NudeNet), AGPL-3.0.
+
+FULL LICENCE TEXT NOT YET ADDED: before this repository is published, append the complete text of
+https://www.gnu.org/licenses/agpl-3.0.txt below this line.
