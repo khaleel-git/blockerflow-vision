@@ -16,7 +16,8 @@ It contains:
 - The code to run it with [ONNX Runtime](https://github.com/microsoft/onnxruntime) (MIT) through
   [onnxruntime_go](https://github.com/yalue/onnxruntime_go) (MIT), on CoreML when it can.
 
-This program is licensed under the **GNU Affero General Public License v3.0** (see `LICENSE`).
+This program is licensed under the **GNU Affero General Public License v3.0** (see `LICENSE`, and `NOTICE`
+for the copyright and the third party parts).
 
 ## Build
 
