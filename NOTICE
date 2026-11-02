@@ -1,5 +1,6 @@
 blockerflow-vision
 Copyright (C) 2026 Khaleel Ahmad
+Complete source: https://github.com/khaleel-git/blockerflow-vision
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero
 General Public License as published by the Free Software Foundation, version 3.
@@ -11,6 +12,7 @@ License (LICENSE) for more details.
 Third party parts:
 - model/nudenet_320n.onnx: NudeNet by notAI-tech (https://github.com/notAI-tech/NudeNet), AGPL-3.0.
   Trained with Ultralytics YOLOv8 (https://github.com/ultralytics/ultralytics), AGPL-3.0.
-- github.com/yalue/onnxruntime_go: MIT. ONNX Runtime (loaded at run time, not included here): MIT.
+- github.com/yalue/onnxruntime_go (Mac build only): MIT. ONNX Runtime (loaded at run time, not included here): MIT.
+  On Windows, ONNX Runtime's C API is called directly (model_windows.go); no third party Go code.
 - testdata/portrait.jpg: Albert Einstein, photograph by Oren Jack Turner, 1947, public domain
   (Wikimedia Commons, "Albert Einstein Head.jpg"), scaled down.

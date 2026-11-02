@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"testing"
 	"time"
 )
@@ -92,6 +93,9 @@ func TestModelSeesAFaceAndNothingExplicit(t *testing.T) {
 func TestProgramEndToEnd(t *testing.T) {
 	libOrSkip(t)
 	bin := filepath.Join(t.TempDir(), "blockerflow-vision")
+	if runtime.GOOS == "windows" {
+		bin += ".exe"
+	}
 	if out, err := exec.Command("go", "build", "-o", bin, ".").CombinedOutput(); err != nil {
 		t.Fatalf("build: %v\n%s", err, out)
 	}
